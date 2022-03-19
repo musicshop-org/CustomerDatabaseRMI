@@ -1,6 +1,7 @@
+import sharedrmi.application.api.CustomerService;
+import sharedrmi.application.dto.CustomerDTO;
+
 import application.CustomerServiceImpl;
-import application.api.CustomerService;
-import application.dto.CustomerDTO;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -18,7 +19,7 @@ public class Main {
         Naming.rebind("rmi://localhost/getCustomersByName", new CustomerServiceImpl());
 
         CustomerService customerService = new CustomerServiceImpl();
-        List<CustomerDTO> customerList = customerService.getCustomerByName("Jake");
+        List<CustomerDTO> customerList = customerService.findCustomersByName("Jake");
 
         for (CustomerDTO c:customerList) {
             System.out.println(c.getFirstName() + c.getLastName());

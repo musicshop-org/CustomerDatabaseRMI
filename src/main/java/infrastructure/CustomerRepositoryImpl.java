@@ -1,6 +1,6 @@
 package infrastructure;
 
-import application.dto.CustomerDTO;
+import sharedrmi.application.dto.CustomerDTO;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -25,22 +25,15 @@ public class CustomerRepositoryImpl implements CustomerRepository{
 
             ResultSet rs = st.executeQuery(fetchquery);
 
-
             while (rs.next()) {
 
                 customerDTOs.add(new CustomerDTO(rs.getString("givenName"), rs.getString("familyName")));
             }
 
-
             st.close();
             con.close();
 
-
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
 

@@ -1,6 +1,6 @@
 package infrastructure;
 
-import application.dto.CustomerDTO;
+import sharedrmi.application.dto.CustomerDTO;
 
 import java.util.List;
 

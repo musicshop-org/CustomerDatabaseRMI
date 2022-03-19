@@ -1,7 +1,8 @@
 package application;
 
-import application.api.CustomerService;
-import application.dto.CustomerDTO;
+import sharedrmi.application.api.CustomerService;
+import sharedrmi.application.dto.CustomerDTO;
+
 import infrastructure.CustomerRepository;
 import infrastructure.CustomerRepositoryImpl;
 
@@ -11,14 +12,13 @@ import java.util.List;
 
 public class CustomerServiceImpl extends UnicastRemoteObject implements CustomerService {
 
-    //TODO: Singleton?
     CustomerRepository customerRepository = new CustomerRepositoryImpl();
 
     public CustomerServiceImpl() throws RemoteException {
     }
 
-    public List<CustomerDTO> getCustomerByName(String name) throws RemoteException{
+    @Override
+    public List<CustomerDTO> findCustomersByName(String name) throws RemoteException {
         return customerRepository.getCustomersByName(name);
     }
-
 }
