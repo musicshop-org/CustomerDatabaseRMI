@@ -19,6 +19,6 @@ public class CustomerServiceImpl extends UnicastRemoteObject implements Customer
 
     @Override
     public List<CustomerDTO> findCustomersByName(String name) throws RemoteException {
-        return customerRepository.getCustomersByName(name);
+        return customerRepository.findCustomersByName(name);
     }
 }

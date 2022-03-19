@@ -6,8 +6,10 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CustomerRepositoryImpl implements CustomerRepository{
-    public List<CustomerDTO> getCustomersByName(String name){
+public class CustomerRepositoryImpl implements CustomerRepository {
+
+    @Override
+    public List<CustomerDTO> findCustomersByName(String name) {
 
         List<CustomerDTO> customerDTOs = new LinkedList<>();
 
@@ -21,7 +23,8 @@ public class CustomerRepositoryImpl implements CustomerRepository{
             Connection con = DriverManager.getConnection(url, user, password);
             Statement st = con.createStatement();
 
-            String fetchquery = "select * from customer where \"givenName\" like '" +name+ "'";
+            @SuppressWarnings("SqlDialectInspection")
+            String fetchquery = "select * from customer where \"givenName\" like '" + name + "'";
 
             ResultSet rs = st.executeQuery(fetchquery);
 
@@ -39,4 +42,5 @@ public class CustomerRepositoryImpl implements CustomerRepository{
 
         return customerDTOs;
     }
+
 }
