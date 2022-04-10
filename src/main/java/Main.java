@@ -16,7 +16,7 @@ public class Main {
         System.setProperty("java.rmi.server.hostname","10.0.40.163");
         LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
 
-        Naming.rebind("rmi://localhost/CustomerService", new CustomerServiceImpl());
+        Naming.rebind("rmi://10.0.40.163/CustomerService", new CustomerServiceImpl());
 
         CustomerService customerService = new CustomerServiceImpl();
         List<CustomerDTO> customerList = customerService.findCustomersByName("Jake");
