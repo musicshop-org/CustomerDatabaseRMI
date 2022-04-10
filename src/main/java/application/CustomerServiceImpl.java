@@ -8,6 +8,7 @@ import infrastructure.CustomerRepositoryImpl;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.LinkedList;
 import java.util.List;
 
 public class CustomerServiceImpl extends UnicastRemoteObject implements CustomerService {
@@ -19,6 +20,8 @@ public class CustomerServiceImpl extends UnicastRemoteObject implements Customer
 
     @Override
     public List<CustomerDTO> findCustomersByName(String name) throws RemoteException {
-        return customerRepository.findCustomersByName(name);
+        List<CustomerDTO> customers = new LinkedList<>();
+        customers = customerRepository.findCustomersByName(name);
+        return customers;
     }
 }

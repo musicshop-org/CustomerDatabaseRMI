@@ -23,14 +23,15 @@ public class CustomerRepositoryImpl implements CustomerRepository {
             Connection con = DriverManager.getConnection(url, user, password);
             Statement st = con.createStatement();
 
+            name = "%"+name+"%";
             @SuppressWarnings("SqlDialectInspection")
-            String fetchquery = "select * from customer where \"givenName\" like '" + name + "'";
+            String fetchquery = "select * from customer where lower(\"givenName\") like lower('" + name + "') OR lower(\"familyName\") like lower('" + name + "')";
 
             ResultSet rs = st.executeQuery(fetchquery);
 
             while (rs.next()) {
 
-                customerDTOs.add(new CustomerDTO(rs.getString("givenName"), rs.getString("familyName")));
+                customerDTOs.add(new CustomerDTO(rs.getString("givenName"), rs.getString("familyName"), rs.getString("email")));
             }
 
             st.close();
