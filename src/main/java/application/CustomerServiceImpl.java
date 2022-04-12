@@ -20,7 +20,7 @@ public class CustomerServiceImpl extends UnicastRemoteObject implements Customer
 
     @Override
     public List<CustomerDTO> findCustomersByName(String name) throws RemoteException {
-        List<CustomerDTO> customers = new LinkedList<>();
+        List<CustomerDTO> customers;
         String[] names = name.split(" ");
 
         if(names.length == 2){
@@ -28,8 +28,6 @@ public class CustomerServiceImpl extends UnicastRemoteObject implements Customer
         } else {
             customers = customerRepository.findCustomersByName(name);
         }
-
-
         return customers;
     }
 }
