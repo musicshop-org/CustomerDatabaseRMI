@@ -16,7 +16,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         try {
             Class.forName("org.postgresql.Driver");
 
-            String url = "jdbc:postgresql://localhost:5432/postgres";
+//            String url = "jdbc:postgresql://localhost:5432/postgres";
+            String url = "jdbc:postgresql://10.0.40.163:5432/postgres";
             String user = "postgres";
             String password = "dbadmin!2020";
 
@@ -30,7 +31,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
             ResultSet rs = st.executeQuery(fetchquery);
 
             while (rs.next()) {
-
+//                System.out.println(rs.getString("address.addressLocality"));
                 customerDTOs.add(new CustomerDTO(rs.getString("givenName"), rs.getString("familyName"), rs.getString("email")));
             }
 
@@ -67,7 +68,6 @@ public class CustomerRepositoryImpl implements CustomerRepository {
             ResultSet rs = st.executeQuery(fetchquery);
 
             while (rs.next()) {
-
                 customerDTOs.add(new CustomerDTO(rs.getString("givenName"), rs.getString("familyName"), rs.getString("email")));
             }
 

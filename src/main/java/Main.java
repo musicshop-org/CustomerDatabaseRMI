@@ -21,8 +21,8 @@ public class Main {
         CustomerService customerService = new CustomerServiceImpl();
         List<CustomerDTO> customerList = customerService.findCustomersByName("Jake");
 
-        for (CustomerDTO c:customerList) {
-            System.out.println(c.getFirstName() + c.getLastName());
-        }
+//        for (CustomerDTO c:customerList) {
+//            System.out.println(c.getFirstName() + " " + c.getLastName() + " " +  c.getEmail());
+//        }
     }
 }
