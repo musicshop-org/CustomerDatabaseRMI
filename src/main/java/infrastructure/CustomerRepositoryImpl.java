@@ -1,6 +1,7 @@
 package infrastructure;
 
 import sharedrmi.application.dto.CustomerDTO;
+import sharedrmi.domain.valueobjects.Address;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -16,8 +17,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         try {
             Class.forName("org.postgresql.Driver");
 
-//            String url = "jdbc:postgresql://localhost:5432/postgres";
-            String url = "jdbc:postgresql://10.0.40.163:5432/postgres";
+            String url = "jdbc:postgresql://localhost:5432/postgres";
             String user = "postgres";
             String password = "dbadmin!2020";
 
@@ -31,8 +31,16 @@ public class CustomerRepositoryImpl implements CustomerRepository {
             ResultSet rs = st.executeQuery(fetchquery);
 
             while (rs.next()) {
-//                System.out.println(rs.getString("address.addressLocality"));
-                customerDTOs.add(new CustomerDTO(rs.getString("givenName"), rs.getString("familyName"), rs.getString("email")));
+                customerDTOs.add(new CustomerDTO(rs.getString("givenName"),
+                                                 rs.getString("familyName"),
+                                                 rs.getString("email"),
+                                                 Address.builder()
+                                                         .addressCountry(rs.getString("address.addressCountry"))
+                                                         .addressLocality(rs.getString("address.addressLocality"))
+                                                         .postalCode(rs.getString("address.postalCode"))
+                                                         .streetAddress(rs.getString("address.streetAddress"))
+                                                         .build()
+                        ));
             }
 
             st.close();
@@ -68,7 +76,16 @@ public class CustomerRepositoryImpl implements CustomerRepository {
             ResultSet rs = st.executeQuery(fetchquery);
 
             while (rs.next()) {
-                customerDTOs.add(new CustomerDTO(rs.getString("givenName"), rs.getString("familyName"), rs.getString("email")));
+                customerDTOs.add(new CustomerDTO(rs.getString("givenName"),
+                        rs.getString("familyName"),
+                        rs.getString("email"),
+                        Address.builder()
+                                .addressCountry(rs.getString("address.addressCountry"))
+                                .addressLocality(rs.getString("address.addressLocality"))
+                                .postalCode(rs.getString("address.postalCode"))
+                                .streetAddress(rs.getString("address.streetAddress"))
+                                .build()
+                ));
             }
 
             st.close();
@@ -103,8 +120,16 @@ public class CustomerRepositoryImpl implements CustomerRepository {
             ResultSet rs = st.executeQuery(fetchquery);
 
             while (rs.next()) {
-
-                customerDTOs.add(new CustomerDTO(rs.getString("givenName"), rs.getString("familyName"), rs.getString("email")));
+                customerDTOs.add(new CustomerDTO(rs.getString("givenName"),
+                        rs.getString("familyName"),
+                        rs.getString("email"),
+                        Address.builder()
+                                .addressCountry(rs.getString("address.addressCountry"))
+                                .addressLocality(rs.getString("address.addressLocality"))
+                                .postalCode(rs.getString("address.postalCode"))
+                                .streetAddress(rs.getString("address.streetAddress"))
+                                .build()
+                ));
             }
 
             st.close();
@@ -139,8 +164,16 @@ public class CustomerRepositoryImpl implements CustomerRepository {
             ResultSet rs = st.executeQuery(fetchquery);
 
             while (rs.next()) {
-
-                customerDTOs.add(new CustomerDTO(rs.getString("givenName"), rs.getString("familyName"), rs.getString("email")));
+                customerDTOs.add(new CustomerDTO(rs.getString("givenName"),
+                        rs.getString("familyName"),
+                        rs.getString("email"),
+                        Address.builder()
+                                .addressCountry(rs.getString("address.addressCountry"))
+                                .addressLocality(rs.getString("address.addressLocality"))
+                                .postalCode(rs.getString("address.postalCode"))
+                                .streetAddress(rs.getString("address.streetAddress"))
+                                .build()
+                ));
             }
 
             st.close();
