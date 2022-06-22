@@ -1,14 +1,12 @@
 package application;
 
+import infrastructure.CustomerRepository;
+import infrastructure.CustomerRepositoryImpl;
 import sharedrmi.application.api.CustomerService;
 import sharedrmi.application.dto.CustomerDTO;
 
-import infrastructure.CustomerRepository;
-import infrastructure.CustomerRepositoryImpl;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.LinkedList;
 import java.util.List;
 
 public class CustomerServiceImpl extends UnicastRemoteObject implements CustomerService {
